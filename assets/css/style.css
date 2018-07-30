@@ -1,0 +1,8 @@
+#cat1,#cat2{
+    width: 100vh;
+    margin: 0  auto;
+}
+#catImg1,#catImg2{
+    width: 500px;
+    height: 300px;
+}
