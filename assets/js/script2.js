@@ -1,32 +1,30 @@
 var imgElement = document.getElementById("catImg");
-var count = 0;
-var countResult = document.getElementById("result");
-var catNames = ['cat1','cat2','cat3'];
-
-var selectedCatElement = document.getElementById("catImg1");
+var counts = [0,0,0];
+var catNames = ['cat1', 'cat2', 'cat3'];
+var selectedCatIndex=0;
 
 for (var i = 0; i < catNames.length; i++) {
-
     var catName = catNames[i];
-
     var elem = document.createElement('div');
     elem.textContent = catName;
 
-    elem.addEventListener('click', (function(catNameCopy) {
+    elem.addEventListener('click', (function(catNameCopy,iCopy) {
         return function() {
             catNameId.innerHTML = "Cat Name: "+catNameCopy;
             document.getElementById("catImg").src="../assets/images/"+catNameCopy+".jpg";
-         count=0;
-             result.innerHTML = "Count: "+count;
+            selectedCatIndex=iCopy;
+            console.log("iCopy=" +iCopy);
+            result.innerHTML = "Count: "+counts[selectedCatIndex];
         };
-    })(catName));
+    })(catName,i));
 
     document.body.appendChild(elem);
 };
 
 
 imgElement.addEventListener('click', function(){
-    count+=1;
-    result.innerHTML = "Count: "+count;
+    console.log("selected cat index="+selectedCatIndex);
+    counts[selectedCatIndex]+=1;
+    result.innerHTML = "Count: "+counts[selectedCatIndex];
 }, false);
 
