@@ -1,20 +1,29 @@
 var imgElement = document.getElementById("catImg");
-var counts = [0,0,0];
-var catNames = ['cat1', 'cat2', 'cat3'];
 var selectedCatIndex=0;
 
-for (var i = 0; i < catNames.length; i++) {
-    var catName = catNames[i];
+var cats=[{name: 'cat1',count: 0, imgURL: "../assets/images/cat1.jpg"},
+          {name: 'cat2',count: 0, imgURL: "../assets/images/cat2.jpg"},
+          {name: 'cat3',count: 0, imgURL: "../assets/images/cat3.jpg"}];
+
+
+for (var i = 0; i < cats.length; i++) {
+    var catName = cats[i].name;
+
     var elem = document.createElement('div');
     elem.textContent = catName;
+
+//    var elem = document.createElement("div");
+//    var t = document.createTextNode(catName);
+//    elem.appendChild(t);
+//    document.getElementById("catList").appendChild(elem);
+
 
     elem.addEventListener('click', (function(catNameCopy,iCopy) {
         return function() {
             catNameId.innerHTML = "Cat Name: "+catNameCopy;
-            document.getElementById("catImg").src="../assets/images/"+catNameCopy+".jpg";
+            document.getElementById("catImg").src=cats[iCopy].imgURL;
             selectedCatIndex=iCopy;
-            console.log("iCopy=" +iCopy);
-            result.innerHTML = "Count: "+counts[selectedCatIndex];
+            result.innerHTML = "Count: "+cats[iCopy].count;
         };
     })(catName,i));
 
@@ -24,7 +33,7 @@ for (var i = 0; i < catNames.length; i++) {
 
 imgElement.addEventListener('click', function(){
     console.log("selected cat index="+selectedCatIndex);
-    counts[selectedCatIndex]+=1;
-    result.innerHTML = "Count: "+counts[selectedCatIndex];
+    cats[selectedCatIndex].count+=1;
+    result.innerHTML = "Count: "+ cats[selectedCatIndex].count;
 }, false);
 
